@@ -1,0 +1,24 @@
+{
+  "name": "twitter_rate_limiter",
+  "version": "0.0.0",
+  "description": "Twitter rate limit module to automatically limit requests to twitter to stay within rate limits",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -R landing lib/my_first_module.js"
+  },
+  "keywords": [
+    "twitter",
+    "rate",
+    "rate",
+    "limit"
+  ],
+  "author": "Dheeraj Manjunath",
+  "license": "BSD",
+  "devDependencies": {
+    "should": ">=0.0.0"
+  },
+  "dependencies": {
+    "request": ">=0.0.0",
+    "moment": ">=0.0.0"
+  }
+}

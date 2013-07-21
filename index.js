@@ -1,6 +1,9 @@
 var request = require('request');
 var moment = require('moment');
-var config = require('./config.json')
+var config = require('./config.json');
+var kue = require('kue'), 
+    jobs = kue.createQueue();
+
 
 var oauth = { consumer_key: config.twitter.consumerKey,
               consumer_secret: config.twitter.consumerSecret,

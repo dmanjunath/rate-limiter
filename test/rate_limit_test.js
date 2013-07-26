@@ -19,6 +19,7 @@ var callGetFriends = function(username, callback) {
 	request.get({url: url, oauth: oauth, json: true}, function(error, res, body) {
 		callback(body);
 	})
+	callCount+=1;
 }
 
 getfriends.callWithLimit(callGetFriends, ["panacheswag", function(data){
@@ -27,16 +28,19 @@ getfriends.callWithLimit(callGetFriends, ["panacheswag", function(data){
 getfriends.callWithLimit(callGetFriends, ["onkis", function(data){
 	console.log(data);
 }]);
-assert.equal(callCount, 2);
+setTimeout(function() {
+	assert.equal(callCount, 2)
+}, 2000);
 getfriends.callWithLimit(callGetFriends, ["andreyee", function(data){
 	console.log(data);
 }]);
 getfriends.callWithLimit(callGetFriends, ["izs", function(data){
 	console.log(data);
 }]);
-setTimeout(function() {
-	assert.equal(callCount, 4)
-}, 10500);
 getfriends.callWithLimit(callGetFriends, ["panacheswag", function(data){
 	console.log(data);
 }]);
+setTimeout(function() {
+	assert.equal(callCount, 5);
+	process.exit();
+}, 10500);

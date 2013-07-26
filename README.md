@@ -1,4 +1,4 @@
-twitter-rate-limiter
+twitter_rate_limiter
 ====================
 
 ## Description
@@ -10,7 +10,7 @@ API limits, it will store them and execute them after the time window has passed
 ## Instructions
 
 <pre>
-  npm install twitter-rate-limiter
+  npm install twitter_rate_limiter
 </pre>
 
 ## Setup

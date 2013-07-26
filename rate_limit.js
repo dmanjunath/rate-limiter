@@ -1,4 +1,3 @@
-
 function RateLimit(limit, timeWindow){
   this.limit = limit;
   this.timeWindow = timeWindow;

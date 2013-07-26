@@ -4,7 +4,7 @@ var assert = require('assert');
 
 
 var rateLimit = new RateLimiter(5, 2000);
-var rateLimit2 = new RateLimiter(10, 10000);
+var rateLimit2 = new RateLimiter(2, 10000);
 var callCount = 0;
 var callCount2 = 0;
 

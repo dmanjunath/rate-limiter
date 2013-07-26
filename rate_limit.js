@@ -20,13 +20,11 @@ RateLimit.prototype.callWithLimit = function(func, args, context){
     }
   }
   else{
-    console.log('pushing....')
     self.queue.push([func, args, context]);
   }
 }
 
 RateLimit.prototype.reset = function(){
-  console.log(self.queue)
   
   self.currentLimit = 0;
   var currentLength = self.queue.length;

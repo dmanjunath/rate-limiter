@@ -10,6 +10,10 @@
     "limit"
   ],
   "author": "Dheeraj Manjunath",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmanjunath/twitter-rate-limiter.git"
+  },
   "license": "BSD",
   "devDependencies": {
     "should": ">=0.0.0"

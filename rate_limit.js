@@ -1,37 +1,35 @@
 
-
-var self = this;
 function RateLimit(limit, timeWindow){
   this.limit = limit;
   this.timeWindow = timeWindow;
   this.currentLimit = 0;
   this.queue = [];
-  self = this;
 }
 
 RateLimit.prototype.callWithLimit = function(func, args, context){
 
-  if(self.currentLimit < self.limit){
-    self.currentLimit+=1;
+  if(this.currentLimit < this.limit){
+    this.currentLimit+=1;
     func.apply(context || this, args);
 
-    if(self.currentLimit === self.limit){
-      setTimeout(self.reset, self.timeWindow, self);
+    if(this.currentLimit === this.limit){
+      var that = this;
+      setTimeout(function(){
+        reset.apply(that);
+      }, this.timeWindow);
     }
   }
   else{
-    self.queue.push([func, args, context]);
+    this.queue.push([func, args, context]);
   }
 }
-
-RateLimit.prototype.reset = function(){
-  
-  self.currentLimit = 0;
-  var currentLength = self.queue.length;
+function reset(){
+  this.currentLimit = 0;
+  var currentLength = this.queue.length;
   var item, i = 0;
   while(i < currentLength){
-    item = self.queue.pop()
-    self.callWithLimit(item[0], item[1], item[2]);
+    item = this.queue.pop()
+    this.callWithLimit(item[0], item[1], item[2]);
     i+=1;
   }
 }

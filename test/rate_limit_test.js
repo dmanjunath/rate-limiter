@@ -56,5 +56,5 @@ rateLimit.callWithLimit(something,["one"])
 rateLimit.callWithLimit(something,["one"])
 // setTimeout(function(){
 //   assert.equal(callCount, 22); //shoud have called 12 times
-
+//   process.exit(0);
 // },4100)

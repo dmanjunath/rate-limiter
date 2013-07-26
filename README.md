@@ -1,7 +1,11 @@
 twitter-rate-limiter
 ====================
 
-Twitter API for node.js with rate limiter
+## Description
+
+This module helps manage your requests to the Twitter API so you don't get rate limited.  If you use
+the module to make requests, it will automatically queue your requests and if you are in danger of exceeding Twitter's 
+API limits, it will store them and execute them after the time window has passed.  No more worrying about rate limiting.
 
 ## Instructions
 
@@ -9,8 +13,8 @@ Twitter API for node.js with rate limiter
   npm install twitter-rate-limiter
 </pre>
 
-## Super simple to use
-1.  Create a file called config.json with your twitter credentials in the format
+## Setup
+Create a file called config.json with your twitter credentials in the format
 
 ```javascript
 {
@@ -24,8 +28,38 @@ Twitter API for node.js with rate limiter
 ```
 You could hardcode it into the file but that wouldn't be advisable.
 
-2.  Navigate to the lib/ directory
-3.  Run the sample 'node my_first_module.js'.  This is a sample scenario where rate limit has been set to 2 and the time window is 5 seconds.
+##Usage
 
+In your file, import the config.json file
+
+Import the rate_limit.js file
+<pre>
+  var RateLimiter = require('../rate_limit.js');
+</pre>
+
+Instantiate a new RateLimit object. 
+```javascript
+var getfriends = new RateLimiter(2, 5000);
+```
+The two arguments are the requests in the time window in the form(requests, time window). Usually the time window is 900000 ms for 15 minutes.  The request number varies by function call
+
+Create a function for the twitter call you want to make.  This example shows the GET friends request
+```javascript
+var callGetFriends = function(username, callback) {
+	var url  = 'https://api.twitter.com/1.1/friends/ids.json?cursor=-1&screen_name='+username+'&count=5000';
+	console.log(url);
+	request.get({url: url, oauth: oauth, json: true}, function(error, res, body) {
+		callback(body);
+	})
+}
+```
+
+The function calling this would look like
+```javascript
+getfriends.callWithLimit(callGetFriends, ["user", function(data){
+	console.log(data);
+	"...insert processing here"
+}]);
+```
 
 

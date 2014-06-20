@@ -1,4 +1,4 @@
-twitter_rate_limiter
+rate-limiter
 ====================
 
 ## Description
